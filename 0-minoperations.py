@@ -1,18 +1,30 @@
 #!/usr/bin/python3
+"""
+Minimum operations to reach n characters
+"""
+
 
 def minOperations(n):
-    if n < 2:
+    """
+    Calculates the minimum operations to reach n characters
+
+    Args:
+        n (int): The number of characters to reach
+
+    Returns:
+        int: The minimum operations to reach n characters
+    """
+    # Edge cases [0, 1]
+    if n <= 1:
         return 0
 
-    current_num_of_h = 1
-    copied = 0
-    num_of_operations = 0
+    operations = 0
+    divisor = 2
 
-    while current_num_of_h < n:
-        if n % current_num_of_h == 0:
-            copied = current_num_of_h
-            num_of_operations += 1
-
-        current_num_of_h += copied
-        num_of_operations += 1
-    return num_of_operations
+    while n > 1:
+        if n % divisor == 0:
+            n = n // divisor
+            operations += divisor
+        else:
+            divisor += 1
+    return operations
